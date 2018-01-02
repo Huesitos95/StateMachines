@@ -4,6 +4,9 @@
 #include "Scene.h"
 #include "Agent.h"
 #include "Path.h"
+#include "State.h"
+#include "Node.h"
+#include <queue>
 
 class ScenePlanning :
 	public Scene
@@ -34,5 +37,7 @@ private:
 	Vector2D cell2pix(Vector2D cell);
 	Vector2D pix2cell(Vector2D pix);
 	bool isValidCell(Vector2D cell);
+
+	void AEstrella(Node inici, Node final);
 
 };

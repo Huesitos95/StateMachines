@@ -14,7 +14,11 @@ Agent::Agent() : sprite_texture(0),
 				 sprite_num_frames(0),
 	             sprite_w(0),
 	             sprite_h(0),
-	             draw_sprite(false)
+	             draw_sprite(false),
+	money(0.0f),
+	stamina(100.0f),
+	water(100.0f)
+				
 {
 	steering_behavior = new SteeringBehavior;
 }
@@ -45,6 +49,16 @@ Vector2D Agent::getTarget()
 Vector2D Agent::getVelocity()
 {
 	return velocity;
+}
+
+PlayerState Agent::getState()
+{
+	return *Status;
+}
+
+void Agent::setState(PlayerState state)
+{
+	*Status = state;
 }
 
 float Agent::getMaxVelocity()

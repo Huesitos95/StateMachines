@@ -115,6 +115,34 @@ void ScenePlanning::update(float dtime, SDL_Event *event)
 	{
 		agents[0]->update(Vector2D(0,0), dtime, event);
 	}
+
+	//TODO
+	switch (agents[0]->getState())
+	{
+	case PlayerState::Thirsty:
+		//goto Saloon
+
+	case PlayerState::NoThirsty:
+		//goto Mine
+
+	case PlayerState::Wealthy:
+		//goto Home
+
+	case PlayerState::NoWealthy:
+		//goto Mine
+		
+	case PlayerState::Full:
+		//goto Bank
+
+	case PlayerState::Rested:
+		//goto Mine
+
+	case PlayerState::Tired:
+		//goto Home
+
+	default:
+		break;
+	}
 }
 
 void ScenePlanning::draw()
@@ -276,4 +304,73 @@ bool ScenePlanning::isValidCell(Vector2D cell)
 	if ((cell.x < 0) || (cell.y < 0) || (cell.x >= terrain.size()) || (cell.y >= terrain[0].size()) )
 		return false;
 	return !(terrain[(unsigned int)cell.x][(unsigned int)cell.y] == 0);
+}
+
+void ScenePlanning::AEstrella(Node inici, Node final)
+{
+	priority_queue<Node, vector<Node>, LessThanByPriority> frontera;
+	contador = 0;
+	int newCost;
+	from.clear();
+	from.resize(num_cell_x, vector<Node>(num_cell_y));
+	SetCosts();
+	frontera.push(inici);
+	vector<vector<bool>> visitades(terrain.size(), vector<bool>(terrain[0].size()));
+	for (int i = 0; i < terrain.size(); i++) {
+		for (int j = 0; j < terrain[0].size(); j++) {
+			visitades[i][j] = false;
+		}
+	}
+	for (int i = 0; i < num_cell_x; i++) {
+		for (int j = 0; j < num_cell_y; j++) {
+			from[i][j].accumulat = -1;
+		}
+	}
+	path.points.clear();
+
+	while (!frontera.empty()) {
+
+		Node nodeActual = frontera.top();
+		currX = nodeActual.position.x;
+		currY = nodeActual.position.y;
+		nodeActual.fromNode = Vector2D(-1, -1);
+		frontera.pop();
+		std::vector<Node> neighbors = graph.getConnections(nodeActual);
+		from[currX][currY].visited = true;
+
+		for (int i = 0; i < neighbors.size(); i++) {
+			newCost = from[currX][currY].accumulat + from[neighbors[i].position.x][neighbors[i].position.y].cost;
+			if (from[neighbors[i].position.x][neighbors[i].position.y].accumulat == -1 || newCost < from[neighbors[i].position.x][neighbors[i].position.y].accumulat) {
+				from[neighbors[i].position.x][neighbors[i].position.y].accumulat = newCost;
+
+				neighbors[i].heuristic_distance = pow((final.position.x - neighbors[i].position.x), 2) + pow((final.position.y - neighbors[i].position.y), 2);
+				neighbors[i].priority = newCost + neighbors[i].heuristic_distance;
+
+				from[neighbors[i].position.x][neighbors[i].position.y].fromNode = Vector2D(nodeActual.position.x, nodeActual.position.y);
+				frontera.push(neighbors[i]);
+				contador++;
+
+				//cout << "x: " << neighbors[i].x << " y: " << neighbors[i].y << "cost: " << cameFrom[neighbors[i].x][neighbors[i].y].acumulatedCost << endl;
+
+				if (Vector2D(neighbors[i].position.x, neighbors[i].position.y) == Vector2D(final.position.x, final.position.y)) {
+					nodeActual = final;
+					path.points.push_back(cell2pix(Vector2D(nodeActual.position.x, nodeActual.position.y)));
+					while (Vector2D(nodeActual.position.x, nodeActual.position.y) != Vector2D(inici.position.x, inici.position.y)) {
+						currX = nodeActual.position.x;
+						currY = nodeActual.position.y;
+						nodeActual.position.x = from[currX][currY].fromNode.x;
+						//std::cout << nodeActual.x << endl;
+						nodeActual.position.y = from[currX][currY].fromNode.y;
+						//std::cout << nodeActual.y << endl;
+						path.points.insert(path.points.begin(), cell2pix(Vector2D(nodeActual.position.x, nodeActual.position.y)));
+					}
+					path.points.insert(path.points.begin(), cell2pix(Vector2D(inici.position.x, final.position.y)));
+					std::cout << "Moneda trobada!" << endl;
+					times++; //Per fer la mitjana
+					caculNodes();
+					return;
+				}
+			}
+		}
+	}
 }

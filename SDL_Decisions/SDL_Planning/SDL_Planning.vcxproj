@@ -138,6 +138,9 @@
     <ClCompile Include="..\src\SteeringBehavior.cpp" />
     <ClCompile Include="..\src\utils.cpp" />
     <ClCompile Include="Bank.cpp" />
+    <ClCompile Include="C:\Users\Pau\SDL_Pathfinding\src\Edge.cpp" />
+    <ClCompile Include="C:\Users\Pau\SDL_Pathfinding\src\Graph.cpp" />
+    <ClCompile Include="C:\Users\Pau\SDL_Pathfinding\src\Node.cpp" />
     <ClCompile Include="Home.cpp" />
     <ClCompile Include="Mine.cpp" />
     <ClCompile Include="Saloon.cpp" />
@@ -153,6 +156,9 @@
     <ClInclude Include="..\src\SDL_SimpleApp.h" />
     <ClInclude Include="..\src\Vector2D.h" />
     <ClInclude Include="Bank.h" />
+    <ClInclude Include="C:\Users\Pau\SDL_Pathfinding\src\Edge.h" />
+    <ClInclude Include="C:\Users\Pau\SDL_Pathfinding\src\Graph.h" />
+    <ClInclude Include="C:\Users\Pau\SDL_Pathfinding\src\Node.h" />
     <ClInclude Include="Home.h" />
     <ClInclude Include="Mine.h" />
     <ClInclude Include="Saloon.h" />
