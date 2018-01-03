@@ -3,21 +3,23 @@
 using namespace std;
 
 Agent::Agent() : sprite_texture(0),
-                 position(Vector2D(100, 100)),
-	             target(Vector2D(1000, 100)),
-	             velocity(Vector2D(0,0)),
-	             mass(0.1f),
-	             max_force(150),
-	             max_velocity(200),
-	             orientation(0),
-	             color({ 255,255,255,255 }),
-				 sprite_num_frames(0),
-	             sprite_w(0),
-	             sprite_h(0),
-	             draw_sprite(false),
-	money(0.0f),
-	stamina(100.0f),
-	water(100.0f)
+position(Vector2D(100, 100)),
+target(Vector2D(1000, 100)),
+velocity(Vector2D(0, 0)),
+mass(0.1f),
+max_force(150),
+max_velocity(200),
+orientation(0),
+color({ 255,255,255,255 }),
+sprite_num_frames(0),
+sprite_w(0),
+sprite_h(0),
+draw_sprite(false),
+money(0.0f),
+stamina(100.0f),
+water(100.0f),
+Status(PlayerState::Rested),
+currState(new Mine)
 				
 {
 	steering_behavior = new SteeringBehavior;
@@ -53,12 +55,12 @@ Vector2D Agent::getVelocity()
 
 PlayerState Agent::getState()
 {
-	return *Status;
+	return Status;
 }
 
 void Agent::setState(PlayerState state)
 {
-	*Status = state;
+	Status = state;
 }
 
 float Agent::getMaxVelocity()

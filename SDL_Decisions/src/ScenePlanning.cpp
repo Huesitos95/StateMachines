@@ -33,6 +33,7 @@ ScenePlanning::ScenePlanning()
 	currentTarget = Vector2D(0, 0);
 	currentTargetIndex = -1;
 
+	statestatus = StateStatus::Enter;
 }
 
 ScenePlanning::~ScenePlanning()
@@ -117,33 +118,55 @@ void ScenePlanning::update(float dtime, SDL_Event *event)
 	}
 
 	//TODO
-	switch (agents[0]->getState())
+	while (statestatus != StateStatus::Quit)
 	{
-	case PlayerState::Thirsty:
-		//goto Saloon
+		switch (statestatus)
+		{
+		case StateStatus::Quit:
 
-	case PlayerState::NoThirsty:
-		//goto Mine
+		case StateStatus::Enter:
+			agents[0]->currState->Enter();
+		case StateStatus::Update:
+			agents[0]->currState->Update();
+			break;
+		case StateStatus::Exit:
+			switch (agents[0]->getState())
+			{
+			case PlayerState::Thirsty:
+				//goto Saloon
 
-	case PlayerState::Wealthy:
-		//goto Home
+			case PlayerState::NoThirsty:
+				//goto Mine
 
-	case PlayerState::NoWealthy:
-		//goto Mine
+			case PlayerState::Wealthy:
+				//goto Home
+
+			case PlayerState::NoWealthy:
+				//goto Mine
+
+			case PlayerState::Full:
+				//goto Bank
+
+			case PlayerState::Rested:
+				//goto Mine
+				//std::cout << "Entra" << std::endl;
+				//delete agents[0]->currState;
+				agents[0]->currState = new Mine();
+				agents[0]->currState->Update();
+
+			case PlayerState::Tired:
+				//goto Home
+
+			default:
+				break;
+			}
+		default:
+			break;
+		}
 		
-	case PlayerState::Full:
-		//goto Bank
-
-	case PlayerState::Rested:
-		//goto Mine
-
-	case PlayerState::Tired:
-		//goto Home
-
-	default:
-		break;
 	}
 }
+	
 
 void ScenePlanning::draw()
 {
@@ -309,11 +332,9 @@ bool ScenePlanning::isValidCell(Vector2D cell)
 void ScenePlanning::AEstrella(Node inici, Node final)
 {
 	priority_queue<Node, vector<Node>, LessThanByPriority> frontera;
-	contador = 0;
 	int newCost;
 	from.clear();
 	from.resize(num_cell_x, vector<Node>(num_cell_y));
-	SetCosts();
 	frontera.push(inici);
 	vector<vector<bool>> visitades(terrain.size(), vector<bool>(terrain[0].size()));
 	for (int i = 0; i < terrain.size(); i++) {
@@ -348,7 +369,6 @@ void ScenePlanning::AEstrella(Node inici, Node final)
 
 				from[neighbors[i].position.x][neighbors[i].position.y].fromNode = Vector2D(nodeActual.position.x, nodeActual.position.y);
 				frontera.push(neighbors[i]);
-				contador++;
 
 				//cout << "x: " << neighbors[i].x << " y: " << neighbors[i].y << "cost: " << cameFrom[neighbors[i].x][neighbors[i].y].acumulatedCost << endl;
 
@@ -366,8 +386,6 @@ void ScenePlanning::AEstrella(Node inici, Node final)
 					}
 					path.points.insert(path.points.begin(), cell2pix(Vector2D(inici.position.x, final.position.y)));
 					std::cout << "Moneda trobada!" << endl;
-					times++; //Per fer la mitjana
-					caculNodes();
 					return;
 				}
 			}

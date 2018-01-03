@@ -7,6 +7,9 @@
 #include "Vector2D.h"
 #include "utils.h"
 #include "SteeringBehavior.h"
+#include "State.h"
+#include "Mine.h"
+
 
 class Agent
 {
@@ -17,7 +20,8 @@ private:
 	Vector2D position;
 	Vector2D velocity;
 	Vector2D target;
-	PlayerState *Status;
+	PlayerState Status;
+	
 
 	float mass;
 	float orientation;
@@ -52,5 +56,7 @@ public:
 	void update(Vector2D steering_force, float dtime, SDL_Event *event);
 	void draw();
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
+
+	State *currState;
 	
 };

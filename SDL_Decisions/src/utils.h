@@ -10,3 +10,4 @@ void set_pixel(SDL_Renderer *rend, int x, int y, Uint8 r, Uint8 g, Uint8 b, Uint
 void draw_circle(SDL_Renderer *surface, int n_cx, int n_cy, int rad, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 
 enum class PlayerState {Thirsty,Wealthy,Full,Rested, Tired,NoThirsty,NoWealthy};
+enum class StateStatus {Enter, Update, Exit, Quit};

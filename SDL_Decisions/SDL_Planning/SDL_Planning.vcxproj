@@ -89,7 +89,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\SDL2_ttf\lib\x86;$(SolutionDir)lib\SDL2_image\lib\x86;$(SolutionDir)lib\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib</AdditionalDependencies>
     </Link>
@@ -132,37 +132,37 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Agent.cpp" />
+    <ClCompile Include="..\src\Bank.cpp" />
+    <ClCompile Include="..\src\Home.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Mine.cpp" />
+    <ClCompile Include="..\src\Saloon.cpp" />
     <ClCompile Include="..\src\ScenePlanning.cpp" />
     <ClCompile Include="..\src\SDL_SimpleApp.cpp" />
+    <ClCompile Include="..\src\State.cpp" />
     <ClCompile Include="..\src\SteeringBehavior.cpp" />
     <ClCompile Include="..\src\utils.cpp" />
-    <ClCompile Include="Bank.cpp" />
     <ClCompile Include="C:\Users\Pau\SDL_Pathfinding\src\Edge.cpp" />
     <ClCompile Include="C:\Users\Pau\SDL_Pathfinding\src\Graph.cpp" />
     <ClCompile Include="C:\Users\Pau\SDL_Pathfinding\src\Node.cpp" />
-    <ClCompile Include="Home.cpp" />
-    <ClCompile Include="Mine.cpp" />
-    <ClCompile Include="Saloon.cpp" />
-    <ClCompile Include="State.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Agent.h" />
+    <ClInclude Include="..\src\Bank.h" />
+    <ClInclude Include="..\src\Home.h" />
+    <ClInclude Include="..\src\Mine.h" />
     <ClInclude Include="..\src\Path.h" />
+    <ClInclude Include="..\src\Saloon.h" />
     <ClInclude Include="..\src\ScenePlanning.h" />
+    <ClInclude Include="..\src\State.h" />
     <ClInclude Include="..\src\SteeringBehavior.h" />
     <ClInclude Include="..\src\utils.h" />
     <ClInclude Include="..\src\Scene.h" />
     <ClInclude Include="..\src\SDL_SimpleApp.h" />
     <ClInclude Include="..\src\Vector2D.h" />
-    <ClInclude Include="Bank.h" />
     <ClInclude Include="C:\Users\Pau\SDL_Pathfinding\src\Edge.h" />
     <ClInclude Include="C:\Users\Pau\SDL_Pathfinding\src\Graph.h" />
     <ClInclude Include="C:\Users\Pau\SDL_Pathfinding\src\Node.h" />
-    <ClInclude Include="Home.h" />
-    <ClInclude Include="Mine.h" />
-    <ClInclude Include="Saloon.h" />
-    <ClInclude Include="State.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\res\spritesheet.png" />
