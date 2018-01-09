@@ -9,6 +9,9 @@
 #include "SteeringBehavior.h"
 #include "State.h"
 #include "Mine.h"
+#include "Home.h"
+#include "Saloon.h"
+#include "Bank.h"
 
 
 class Agent
@@ -20,7 +23,6 @@ private:
 	Vector2D position;
 	Vector2D velocity;
 	Vector2D target;
-	PlayerState Status;
 	
 
 	float mass;
@@ -36,7 +38,6 @@ private:
 	int sprite_w;
 	int sprite_h;
 
-	float money, stamina, water;
 
 public:
 	Agent();
@@ -45,8 +46,6 @@ public:
 	Vector2D getPosition();
 	Vector2D getTarget();
 	Vector2D getVelocity();
-	PlayerState getState();
-	void setState(PlayerState state);
 	float getMaxVelocity();
 	void setPosition(Vector2D position);
 	void setTarget(Vector2D target);
@@ -57,6 +56,13 @@ public:
 	void draw();
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
 
+
+	int money, stamina, water;
+	bool full, thirsty, rested, wealthy;
 	State *currState;
-	
+	State* home;
+	State *saloon;
+	State *mine;
+	State* bank;
+	void changeTo(State* state);
 };

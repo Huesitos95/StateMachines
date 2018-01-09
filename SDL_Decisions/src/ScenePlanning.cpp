@@ -32,8 +32,7 @@ ScenePlanning::ScenePlanning()
 	// PathFollowing next Target
 	currentTarget = Vector2D(0, 0);
 	currentTargetIndex = -1;
-
-	statestatus = StateStatus::Enter;
+	agents[0]->currState->Enter(agents[0]);
 }
 
 ScenePlanning::~ScenePlanning()
@@ -117,54 +116,7 @@ void ScenePlanning::update(float dtime, SDL_Event *event)
 		agents[0]->update(Vector2D(0,0), dtime, event);
 	}
 
-	//TODO
-	while (statestatus != StateStatus::Quit)
-	{
-		switch (statestatus)
-		{
-		case StateStatus::Quit:
 
-		case StateStatus::Enter:
-			agents[0]->currState->Enter();
-		case StateStatus::Update:
-			agents[0]->currState->Update();
-			break;
-		case StateStatus::Exit:
-			switch (agents[0]->getState())
-			{
-			case PlayerState::Thirsty:
-				//goto Saloon
-
-			case PlayerState::NoThirsty:
-				//goto Mine
-
-			case PlayerState::Wealthy:
-				//goto Home
-
-			case PlayerState::NoWealthy:
-				//goto Mine
-
-			case PlayerState::Full:
-				//goto Bank
-
-			case PlayerState::Rested:
-				//goto Mine
-				//std::cout << "Entra" << std::endl;
-				//delete agents[0]->currState;
-				agents[0]->currState = new Mine();
-				agents[0]->currState->Update();
-
-			case PlayerState::Tired:
-				//goto Home
-
-			default:
-				break;
-			}
-		default:
-			break;
-		}
-		
-	}
 }
 	
 

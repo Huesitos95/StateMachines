@@ -8,8 +8,8 @@ class Mine :
 public:
 	Mine();
 	~Mine();
-	void Enter();
-	void Update();
-	void Exit();
+	void Enter(Agent* a);
+	void Update(Agent* a);
+	void Exit(Agent* a, State* s);
 };
 

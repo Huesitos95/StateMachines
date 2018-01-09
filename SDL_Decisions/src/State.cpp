@@ -8,15 +8,15 @@ State::~State()
 {
 }
 
-void State::Enter()
+void State::Enter(Agent *)
 {
 }
 
-void State::Update()
-{
-
-}
-
-void State::Exit()
+void State::Update(Agent *)
 {
 }
+
+void State::Exit(Agent *, State *)
+{
+}
+

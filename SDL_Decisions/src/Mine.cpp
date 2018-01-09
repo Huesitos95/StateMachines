@@ -2,7 +2,7 @@
 
 Mine::Mine()
 {
-	std::cout << "pene23213" << std::endl;
+	
 }
 
 Mine::~Mine()
@@ -10,17 +10,15 @@ Mine::~Mine()
 
 }
 
-void Mine::Update()
+void Mine::Enter(Agent * a)
 {
-	std::cout << "pene" << std::endl;
 }
 
-void Mine::Enter()
+void Mine::Update(Agent * a)
 {
-
 }
 
-void Mine::Exit()
+void Mine::Exit(Agent * a, State * s)
 {
-
 }
+

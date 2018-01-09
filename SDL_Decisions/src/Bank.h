@@ -6,5 +6,8 @@ class Bank :
 public:
 	Bank();
 	~Bank();
+	void Enter(Agent* a);
+	void Update(Agent* a);
+	void Exit(Agent* a, State* s);
 };
 

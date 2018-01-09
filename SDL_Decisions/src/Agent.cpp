@@ -15,14 +15,17 @@ sprite_num_frames(0),
 sprite_w(0),
 sprite_h(0),
 draw_sprite(false),
-money(0.0f),
-stamina(100.0f),
-water(100.0f),
-Status(PlayerState::Rested),
-currState(new Mine)
+money(0),
+stamina(100),
+water(100)
 				
 {
 	steering_behavior = new SteeringBehavior;
+	home = new Home;
+	saloon = new Saloon;
+	mine = new Mine;
+	bank = new Bank;
+	
 }
 
 Agent::~Agent()
@@ -51,16 +54,6 @@ Vector2D Agent::getTarget()
 Vector2D Agent::getVelocity()
 {
 	return velocity;
-}
-
-PlayerState Agent::getState()
-{
-	return Status;
-}
-
-void Agent::setState(PlayerState state)
-{
-	Status = state;
 }
 
 float Agent::getMaxVelocity()
@@ -171,4 +164,9 @@ bool Agent::loadSpriteTexture(char* filename, int _num_frames)
 		SDL_FreeSurface(image);
 
 	return true;
+}
+
+void Agent::changeTo(State * state)
+{
+	currState = state;
 }
