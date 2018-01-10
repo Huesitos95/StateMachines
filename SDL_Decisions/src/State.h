@@ -5,13 +5,12 @@
 
 class State
 {
-private:
-	
+
 public:
 	State();
 	~State();
-	virtual void Enter(Agent*);
-	virtual void Update(Agent*);
-	virtual void Exit(Agent*,State*);
+	virtual void Enter(Agent* a) = 0;
+	virtual void Update(Agent* a) = 0;
+	virtual void Exit(Agent* a,State* s) = 0;
 };
 

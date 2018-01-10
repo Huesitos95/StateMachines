@@ -15,9 +15,22 @@ sprite_num_frames(0),
 sprite_w(0),
 sprite_h(0),
 draw_sprite(false),
+
+// Pasta propia i banc
 money(0),
+maxMoney(10),
+
+wealth(0),
+maxWealth(30),
+
+// Stamina
 stamina(100),
-water(100)
+maxStamina(100),
+
+//Aigua
+water(50),
+maxWater(50)
+
 				
 {
 	steering_behavior = new SteeringBehavior;

@@ -2,6 +2,7 @@
 #include "State.h"
 #include <iostream>
 
+
 class Mine :
 	public State
 {

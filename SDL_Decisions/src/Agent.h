@@ -57,12 +57,12 @@ public:
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
 
 
-	int money, stamina, water;
+	int money, maxMoney, stamina, maxStamina, water, maxWater, wealth, maxWealth;
 	bool full, thirsty, rested, wealthy;
-	State *currState;
+	State* currState;
 	State* home;
-	State *saloon;
-	State *mine;
+	State* saloon;
+	State* mine;
 	State* bank;
 	void changeTo(State* state);
 };

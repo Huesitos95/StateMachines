@@ -42,6 +42,5 @@ private:
 	int currX, currY;
 	Graph graph;
 	void AEstrella(Node inici, Node final);
-	StateStatus statestatus;
 
 };
