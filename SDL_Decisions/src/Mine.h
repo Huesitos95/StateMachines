@@ -1,7 +1,7 @@
 #pragma once
-#include "State.h"
-#include <iostream>
 
+#include <iostream>
+#include "Agent.h"
 
 class Mine :
 	public State

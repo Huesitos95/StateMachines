@@ -18,6 +18,7 @@ void Saloon::Enter(Agent * a)
 
 void Saloon::Update(Agent * a)
 {
+	a->Behavior()->Seek(a, { 3,5 }, 0);
 	a->water++;
 
 	if (a->water >= a->maxWater)
@@ -30,9 +31,8 @@ void Saloon::Update(Agent * a)
 
 void Saloon::Exit(Agent * a, State * s)
 {
-	std::cout << "money: " << a->money << std::endl;
-	std::cout << "water: " << a->water << std::endl;
+
 	std::cout << "stamina: " << a->stamina << std::endl;
-	std::cout << "wealth: " << a->wealth << std::endl;
+	std::cout << "Water: " << a->water << std::endl;
 	a->changeTo(s);
 }

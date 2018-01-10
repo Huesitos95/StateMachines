@@ -13,11 +13,13 @@ Mine::~Mine()
 void Mine::Enter(Agent * a)
 {
 	std::cout << "Enter Mine" << std::endl;
-	
+	// MINA 3-5
+	/*a->Behavior()->Seek(a, { 3,5 }, 0);*/
 }
 
 void Mine::Update(Agent * a)
 {
+	a->Behavior()->Seek(a, { 3,5 }, 0);
 	a->money++;
 	a->stamina--;
 	a->water--;
@@ -39,10 +41,8 @@ void Mine::Update(Agent * a)
 
 void Mine::Exit(Agent * a, State * s)
 {
-	std::cout << "money: " << a->money << std::endl;
-	std::cout << "water: " << a->water << std::endl;
 	std::cout << "stamina: " << a->stamina << std::endl;
-	std::cout << "wealth: " << a->wealth << std::endl;
+
 	a->changeTo(s);
 }
 

@@ -1,5 +1,7 @@
 #pragma once
-#include "State.h"
+
+#include "Agent.h"
+
 class Bank :
 	public State
 {

@@ -1,5 +1,6 @@
 #include "Agent.h"
 
+
 using namespace std;
 
 Agent::Agent() : sprite_texture(0),
@@ -21,7 +22,7 @@ money(0),
 maxMoney(10),
 
 wealth(0),
-maxWealth(30),
+maxWealth(30000),
 
 // Stamina
 stamina(100),

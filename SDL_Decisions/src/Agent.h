@@ -8,9 +8,9 @@
 #include "utils.h"
 #include "SteeringBehavior.h"
 #include "State.h"
-#include "Mine.h"
 #include "Home.h"
 #include "Saloon.h"
+#include "Mine.h"
 #include "Bank.h"
 
 

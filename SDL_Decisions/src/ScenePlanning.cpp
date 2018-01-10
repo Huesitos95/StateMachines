@@ -32,7 +32,7 @@ ScenePlanning::ScenePlanning()
 	// PathFollowing next Target
 	currentTarget = Vector2D(0, 0);
 	currentTargetIndex = -1;
-	agents[0]->currState->Enter(agents[0]);
+	agents[0]->currState = agents[0]->mine;
 }
 
 ScenePlanning::~ScenePlanning()
@@ -89,6 +89,7 @@ void ScenePlanning::update(float dtime, SDL_Event *event)
 					path.points.clear();
 					currentTargetIndex = -1;
 					agents[0]->setVelocity(Vector2D(0,0));
+					agents[0]->currState->Enter(agents[0]);
 					// if we have arrived to the coin, replace it ina random cell!
 					if (pix2cell(agents[0]->getPosition()) == coinPosition)
 					{
@@ -114,6 +115,7 @@ void ScenePlanning::update(float dtime, SDL_Event *event)
 	else
 	{
 		agents[0]->update(Vector2D(0,0), dtime, event);
+		agents[0]->currState->Update(agents[0]);
 	}
 
 
