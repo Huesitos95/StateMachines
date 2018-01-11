@@ -4,6 +4,7 @@
 
 Home::Home()
 {
+	
 }
 
 
@@ -23,6 +24,9 @@ void Home::Enter(Agent * a)
 
 void Home::Update(Agent * a)
 {
+
+	state = STATE::HOME;
+
 	a->Behavior()->Seek(a, { 3,5 }, 0);
 	if (a->stamina <= a->maxStamina)
 	{

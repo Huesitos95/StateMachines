@@ -19,6 +19,8 @@ void Mine::Enter(Agent * a)
 
 void Mine::Update(Agent * a)
 {
+	state = STATE::MINE;
+
 	a->Behavior()->Seek(a, { 3,5 }, 0);
 	a->money++;
 	a->stamina--;

@@ -12,5 +12,6 @@ public:
 	virtual void Enter(Agent* a) = 0;
 	virtual void Update(Agent* a) = 0;
 	virtual void Exit(Agent* a, State* s) = 0;
+	STATE state;
 };
 

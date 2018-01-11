@@ -33,6 +33,31 @@ ScenePlanning::ScenePlanning()
 	currentTarget = Vector2D(0, 0);
 	currentTargetIndex = -1;
 	agents[0]->currState = agents[0]->mine;
+
+
+	//mina 1134 / 80
+
+	mina = { 1134,80 };
+
+	//bank = (pix2cell(207.) 206 / 623
+	//bank = (pix2cell(206), pix2cell(623));
+
+	bank = { 206, 623 };
+
+
+	//home 624 / 594
+
+	//home = (pix2cell(624), pix2cell(594));
+	home = { 624, 594 };
+
+	//saloon 1072 /621
+
+	//saloon = (pix2cell(1072),pix2cell(621));
+
+	saloon = {1072,621};
+
+
+	
 }
 
 ScenePlanning::~ScenePlanning()
@@ -90,6 +115,9 @@ void ScenePlanning::update(float dtime, SDL_Event *event)
 					currentTargetIndex = -1;
 					agents[0]->setVelocity(Vector2D(0,0));
 					agents[0]->currState->Enter(agents[0]);
+					//std::cout << "POSICIO" << endl;
+					/*std::cout << agents[0]->getPosition().x << endl;
+					std::cout << agents[0]->getPosition().y << endl;*/
 					// if we have arrived to the coin, replace it ina random cell!
 					if (pix2cell(agents[0]->getPosition()) == coinPosition)
 					{
@@ -116,8 +144,43 @@ void ScenePlanning::update(float dtime, SDL_Event *event)
 	{
 		agents[0]->update(Vector2D(0,0), dtime, event);
 		agents[0]->currState->Update(agents[0]);
+
+		switch (agents[0]->currState->state)
+		{
+		case STATE::MINE:
+			if (agents[0]->full) {
+				path.points.push_back(bank);
+			}
+			if (agents[0]->thirsty) {
+				path.points.push_back(saloon);
+			}
+			break;
+		case STATE::BANK:
+			if (!agents[0]->rested) {
+				path.points.push_back(home);
+			}
+			if (!agents[0]->wealth) {
+				path.points.push_back(mina);
+			}
+			break;
+		case STATE::SALOON:
+			if (!agents[0]->thirsty) {
+				path.points.push_back(mina);
+			}
+			break;
+		case STATE::HOME:
+			if (agents[0]->rested) {
+				path.points.push_back(mina);
+			}
+			break;
+		default:
+			break;
+		}
+		
 	}
 
+
+	
 
 }
 	

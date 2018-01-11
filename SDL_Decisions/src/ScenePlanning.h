@@ -43,4 +43,7 @@ private:
 	Graph graph;
 	void AEstrella(Node inici, Node final);
 
+	//Node mina, bank, saloon, home;
+	Vector2D mina, bank, saloon, home;
+
 };

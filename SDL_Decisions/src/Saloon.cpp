@@ -4,6 +4,7 @@
 
 Saloon::Saloon()
 {
+	
 }
 
 
@@ -18,6 +19,9 @@ void Saloon::Enter(Agent * a)
 
 void Saloon::Update(Agent * a)
 {
+
+	state = STATE::SALOON;
+
 	a->Behavior()->Seek(a, { 3,5 }, 0);
 	a->water++;
 

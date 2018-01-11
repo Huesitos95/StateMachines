@@ -4,6 +4,7 @@
 
 Bank::Bank()
 {
+	
 }
 
 
@@ -20,6 +21,9 @@ void Bank::Enter(Agent * a)
 
 void Bank::Update(Agent * a)
 {
+	state = STATE::BANK;
+
+
 	a->Behavior()->Seek(a, { 3,5 }, 0);
 	a->wealth += a->money;
 	a->money = 0;
@@ -54,6 +58,9 @@ void Bank::Update(Agent * a)
 void Bank::Exit(Agent * a, State * s)
 {
 	std::cout << "stamina: " << a->stamina << std::endl;
-	
+	std::cout << "water: " << a->water << std::endl;
+	std::cout << "money: " << a->money << std::endl;
+	std::cout << "wealth: " << a->wealth << std::endl;
+
 	a->changeTo(s);
 }
